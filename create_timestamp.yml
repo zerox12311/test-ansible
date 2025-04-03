@@ -1,7 +1,7 @@
 ---
 - name: Create a text file with the current timestamp on Desktop
   hosts: windows
-  gather_facts: no
+  gather_facts: yes
   tasks:
     - name: Get current date and time
       win_command: "powershell -Command Get-Date"
