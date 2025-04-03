@@ -1,0 +1,6 @@
+- name: Test POS Ping
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Test WinRM ping
+      win_ping:
