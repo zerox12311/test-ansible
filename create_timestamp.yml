@@ -1,0 +1,15 @@
+---
+- name: Create a text file with the current timestamp on Desktop
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Get current date and time
+      win_command: "powershell -Command Get-Date"
+      register: current_time
+
+    - name: Create a text file with the current timestamp on the desktop
+      win_copy:
+        content: "{{ current_time.stdout }}"
+        dest: "{{ ansible_env.USERPROFILE }}\\Desktop\\timestamp.txt"
+      # USERPROFILE is the environment variable that points to the user's home directory
+      # This will create the file on the Desktop of the current logged-in user
